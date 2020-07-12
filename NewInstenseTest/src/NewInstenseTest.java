@@ -10,7 +10,7 @@ public class NewInstenseTest {
 		// load the class
 		
 		try {
-	c1=Class.forName("java.util.Date");
+	c1=Class.forName("java.util.Date");  
 	
 	obj=c1.newInstance();
 	System.out.println(obj);
