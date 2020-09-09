@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.nt.controller.MainController;
 import com.nt.vo.CustomerVo;
@@ -16,8 +18,7 @@ public class RealtimeDITest {
 		Scanner sc=new Scanner(System.in);
 		String name=null,cadd=null,pamt=null,rate=null,time=null;
 		CustomerVo vo=null;
-		DefaultListableBeanFactory factory=null;
-		XmlBeanDefinitionReader reader=null;
+		ApplicationContext ctx=null;
 		MainController controller=null;
 		String result=null;
 		
@@ -47,13 +48,11 @@ public class RealtimeDITest {
         vo.setRate(rate);
         vo.setTime(time);
         
-        // create bean factory IoC container
-        factory=new DefaultListableBeanFactory();
-        reader=new XmlBeanDefinitionReader(factory);
-        reader.loadBeanDefinitions("com/nt/cfgs/applicationContext.xml");
+        ctx=new ClassPathXmlApplicationContext("com/nt/cfgs/applicationContext.xml");
+       
         // get controller bean class object
         
-        controller =factory.getBean("controller", MainController.class);
+        controller =ctx.getBean("controller", MainController.class);
         // invoking the method 
         try {
         	result =controller.processCustomer(vo);
