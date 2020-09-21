@@ -24,7 +24,7 @@ public final class MainController {
 	public String processCustomer(CustomerVo vo)throws Exception{
 		CustomerDTO dto=null;
 		String result=null;
-		
+
 		// convert vo class object to DTO class Object
 		dto=new CustomerDTO();
 		dto.setCname(vo.getCname());
